@@ -12,25 +12,21 @@ float _DigitCount;
 float _ZeroFill;
 
 #include "TiledNumber.cginc"
-            
+
 fixed4 numberTex(float2 uv, uint number)
 {
-    uint col = (uint)_Col;
-    uint row = (uint)_Row;
-    uint digitCountInt = (uint)_DigitCount;
-    uint digit = (int)(uv.x * _DigitCount);
-    uint unit = (uint)round(pow(10, _DigitCount - digit - 1));
-	uint n = lerp(number / unit % 10, col * row - 1, _ZeroFill < 0.5 && number < unit);
-	uv = TiledNumber_placeTileUV(
+    uv = TiledNumber_placeTileUV(
         uv,
-        float2(1 / _DigitCount, 1),
-        float2(digit / _DigitCount, 0),
+        float2(1, 1),
+        float2(0, 0),
         float2(_UseSizeX / _TexSizeX, _UseSizeY / _TexSizeY),
         float2(0, 1 - _UseSizeY / _TexSizeY),
-        n,
-        col,
-        row,
-        false
+        number,
+        (uint)_Col,
+        (uint)_Row,
+        false,
+        (uint)_DigitCount,
+        _ZeroFill > 0.5
     );
     return tex2D(_MainTex, uv);
 }

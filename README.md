@@ -35,6 +35,25 @@ see [OpenUPM page](https://openupm.com/packages/net.narazaka.unity.tiled-number-
 ///   0 1 2
 ///   3 4 5
 float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset, float2 tileRegionSizeInTex, float2 tileRegionOffsetInTex, uint n, uint col, uint row, bool isUp);
+
+/// uv: UV
+/// targetSize: display target region size
+/// targetOffset: display target region offset
+/// tileRegionSizeInTex: tile region size in tex
+/// tileRegionOffsetInTex: tile region offset in tex
+/// n: tile number
+/// col: tile column
+/// row: tile row
+/// isUp: true if order is uv native
+///  true:
+///   3 4 5
+///   0 1 2
+///  false:
+///   0 1 2
+///   3 4 5
+/// digitCount: number of digits (00 -> 2, 0000 -> 4)
+/// zeroFill: zero fill (true -> "0123", false -> " 123")
+float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset, float2 tileRegionSizeInTex, float2 tileRegionOffsetInTex, uint n, uint col, uint row, bool isUp, uint digitCount, bool zeroFill);
 ```
 
 ## License

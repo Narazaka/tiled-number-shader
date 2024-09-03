@@ -58,3 +58,41 @@ float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset
 {
     return TiledNumber_focusUV(TiledNumber_tileUV(TiledNumber_placeUV(uv, targetSize, targetOffset), n, col, row, isUp), tileRegionSizeInTex, tileRegionOffsetInTex);
 }
+
+/// <summary>
+/// uv: UV
+/// targetSize: display target region size
+/// targetOffset: display target region offset
+/// tileRegionSizeInTex: tile region size in tex
+/// tileRegionOffsetInTex: tile region offset in tex
+/// n: tile number
+/// col: tile column
+/// row: tile row
+/// isUp: true if order is uv native
+///  true:
+///   3 4 5
+///   0 1 2
+///  false:
+///   0 1 2
+///   3 4 5
+/// digitCount: number of digits (00 -> 2, 0000 -> 4)
+/// zeroFill: zero fill (true -> "0123", false -> " 123")
+/// </summary>
+float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset, float2 tileRegionSizeInTex, float2 tileRegionOffsetInTex, uint n, uint col, uint row, bool isUp, uint digitCount, bool zeroFill)
+{
+    float2 placedUv = TiledNumber_placeUV(uv, targetSize, targetOffset);
+    uint digit = (uint)(placedUv.x * digitCount);
+    uint unit = (uint)round(pow(10, digitCount - digit - 1));
+    uint number = lerp(n / unit % 10, col * row - 1, !zeroFill && n < unit);
+    return TiledNumber_placeTileUV(
+        placedUv,
+        float2(1 / (float)digitCount, 1),
+        float2(digit / (float)digitCount, 0),
+        tileRegionSizeInTex,
+        tileRegionOffsetInTex,
+        number,
+        col,
+        row,
+        isUp
+    );
+}
