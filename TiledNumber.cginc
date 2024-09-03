@@ -76,14 +76,14 @@ float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset
 ///   0 1 2
 ///   3 4 5
 /// digitCount: number of digits (00 -> 2, 0000 -> 4)
-/// zeroFill: zero fill (true -> "0123", false -> " 123"). The last tile in the texture must be blank for this feature.
+/// zeroFill: zero fill (true -> "0123", false -> " 123"). The 10th tile in the texture must be blank for this feature.
 /// </summary>
 float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset, float2 tileRegionSizeInTex, float2 tileRegionOffsetInTex, uint n, uint col, uint row, bool isUp, uint digitCount, bool zeroFill)
 {
     float2 placedUv = TiledNumber_placeUV(uv, targetSize, targetOffset);
     uint digit = (uint)(placedUv.x * digitCount);
     uint unit = (uint)round(pow(10, digitCount - digit - 1));
-    uint number = lerp(n / unit % 10, col * row - 1, !zeroFill && n < unit);
+    uint number = lerp(n / unit % 10, 10, !zeroFill && n < unit);
     return TiledNumber_placeTileUV(
         placedUv,
         float2(1 / (float)digitCount, 1),
