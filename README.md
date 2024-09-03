@@ -39,4 +39,4 @@ float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset
 
 ## License
 
-[Zlib License](LICENSE)
+[Zlib License](LICENSE.txt)
