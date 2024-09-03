@@ -1,6 +1,6 @@
 {
   "name": "net.narazaka.unity.tiled-number-shader",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "displayName": "Tiled Number Shader",
   "description": "Shader (+cginc) to handle tiled number textures",
   "author": {
