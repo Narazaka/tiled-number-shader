@@ -4,7 +4,7 @@ float2 TiledNumber_placeUV(float2 uv, float2 targetSize, float2 targetOffset)
     return (uv - targetOffset) / targetSize;
 }
 
-            // zoom to tex's patrial region
+// zoom to tex's patrial region
 float2 TiledNumber_focusUV(float2 uv, float2 regionSize, float2 regionOffset)
 {
     return uv * regionSize + regionOffset;
