@@ -83,7 +83,7 @@ float2 TiledNumber_placeTileUV(float2 uv, float2 targetSize, float2 targetOffset
     float2 placedUv = TiledNumber_placeUV(uv, targetSize, targetOffset);
     uint digit = (uint)(placedUv.x * digitCount);
     uint unit = (uint)round(pow(10, digitCount - digit - 1));
-    uint number = lerp(n / unit % 10, 10, !zeroFill && n < unit);
+    uint number = lerp(10, n / unit % 10, zeroFill || n >= unit || unit == 1);
     return TiledNumber_placeTileUV(
         placedUv,
         float2(1 / (float)digitCount, 1),
