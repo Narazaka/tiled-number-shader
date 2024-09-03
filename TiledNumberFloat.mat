@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TiledNumber
-  m_Shader: {fileID: 4800000, guid: b32ee15837b20d54189bb3434db27083, type: 3}
+  m_Name: TiledNumberFloat
+  m_Shader: {fileID: 4800000, guid: 758cdf72ab4aeab409ecf4a2e0ea5cb3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -71,9 +71,12 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MaxNumber: 1000
     - _Metallic: 0
+    - _MinNumber: 0
     - _Mode: 0
-    - _Number: 123
+    - _Number: 1234
+    - _NumberRate: 0.123
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Row: 2

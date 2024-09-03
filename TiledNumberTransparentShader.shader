@@ -1,4 +1,4 @@
-Shader "TiledNumber/TiledNumberShader"
+Shader "TiledNumber/TiledNumberTransparentShader"
 {
     Properties
     {
@@ -6,7 +6,7 @@ Shader "TiledNumber/TiledNumberShader"
         _DigitCount("Digit Count", int) = 4
         [MaterialToggle] _ZeroFill("Zero Fill", float) = 1
         _Color("Color", Color) = (1, 1, 1, 1)
-        _BackgroundColor("Background Color", Color) = (0, 0, 0, 1)
+        _BackgroundColor("Background Color", Color) = (0, 0, 0, 0)
         [Space]
         [NoScaleOffset] _MainTex ("Texture", 2D) = "black" {}
         _TexSizeX("Tex Size X", int) = 32
@@ -18,7 +18,8 @@ Shader "TiledNumber/TiledNumberShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass

@@ -1,8 +1,10 @@
-Shader "TiledNumber/TiledNumberShader"
+Shader "TiledNumber/TiledNumberFloatShader"
 {
     Properties
     {
-        _Number("Number", int) = 0
+        _MinNumber("Min Number", int) = 0
+        _MaxNumber("Max Number", int) = 0
+        _NumberRate("Number Rate", float) = 0
         _DigitCount("Digit Count", int) = 4
         [MaterialToggle] _ZeroFill("Zero Fill", float) = 1
         _Color("Color", Color) = (1, 1, 1, 1)
@@ -40,10 +42,12 @@ Shader "TiledNumber/TiledNumberShader"
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
             };
-            
+
             #include "TiledNumberShader.cginc"
 
-            float _Number;
+            float _MinNumber;
+            float _MaxNumber;
+            float _NumberRate;
 
             v2f vert (appdata v)
             {
@@ -55,7 +59,7 @@ Shader "TiledNumber/TiledNumberShader"
             
             fixed4 frag(v2f i) : SV_Target
             {
-                return coloredNumberTex(i.uv, (uint)_Number);
+                return coloredNumberTex(i.uv, (uint)lerp(_MinNumber, _MaxNumber, _NumberRate));
             }
             ENDCG
         }
